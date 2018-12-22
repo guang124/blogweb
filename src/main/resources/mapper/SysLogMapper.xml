@@ -5,7 +5,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="action" jdbcType="VARCHAR" property="action" />
     <result column="data" jdbcType="VARCHAR" property="data" />
-    <result column="authorId" jdbcType="INTEGER" property="authorid" />
+    <result column="authorId" jdbcType="INTEGER" property="authorId" />
     <result column="ip" jdbcType="VARCHAR" property="ip" />
     <result column="created" jdbcType="INTEGER" property="created" />
   </resultMap>
@@ -69,7 +69,7 @@
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.yzg.blogweb.pojo.SysLog" useGeneratedKeys="true">
     insert into t_logs (action, data, authorId, 
       ip, created)
-    values (#{action,jdbcType=VARCHAR}, #{data,jdbcType=VARCHAR}, #{authorid,jdbcType=INTEGER}, 
+    values (#{action,jdbcType=VARCHAR}, #{data,jdbcType=VARCHAR}, #{authorId,jdbcType=INTEGER},
       #{ip,jdbcType=VARCHAR}, #{created,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.yzg.blogweb.pojo.SysLog" useGeneratedKeys="true">
@@ -81,7 +81,7 @@
       <if test="data != null">
         data,
       </if>
-      <if test="authorid != null">
+      <if test="authorId != null">
         authorId,
       </if>
       <if test="ip != null">
@@ -98,8 +98,8 @@
       <if test="data != null">
         #{data,jdbcType=VARCHAR},
       </if>
-      <if test="authorid != null">
-        #{authorid,jdbcType=INTEGER},
+      <if test="authorId != null">
+        #{authorId,jdbcType=INTEGER},
       </if>
       <if test="ip != null">
         #{ip,jdbcType=VARCHAR},
@@ -118,8 +118,8 @@
       <if test="data != null">
         data = #{data,jdbcType=VARCHAR},
       </if>
-      <if test="authorid != null">
-        authorId = #{authorid,jdbcType=INTEGER},
+      <if test="authorId != null">
+        authorId = #{authorId,jdbcType=INTEGER},
       </if>
       <if test="ip != null">
         ip = #{ip,jdbcType=VARCHAR},
@@ -134,7 +134,7 @@
     update t_logs
     set action = #{action,jdbcType=VARCHAR},
       data = #{data,jdbcType=VARCHAR},
-      authorId = #{authorid,jdbcType=INTEGER},
+      authorId = #{authorId,jdbcType=INTEGER},
       ip = #{ip,jdbcType=VARCHAR},
       created = #{created,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}

@@ -1,6 +1,6 @@
 package com.yzg.blogweb.pojo;
 
-public class ArticleCategoryKey {
+public class ArticleCategory {
     private Long id;
 
     private Integer articleId;

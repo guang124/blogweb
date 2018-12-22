@@ -25,17 +25,15 @@ public class Swagger2 {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cn.wmyskxz.blog"))
+                .apis(RequestHandlerSelectors.basePackage("com.yxg.blogweb"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Wmyskxz个人博客RESTful APIs")
-                .description("原文地址链接：http://blog.didispace.com/springbootswagger2/")
-                .termsOfServiceUrl("http://blog.didispace.com/")
-                .contact("@我没有三颗心脏")
+                .title("个人博客RESTful APIs")
+                .contact("@guang")
                 .version("1.0")
                 .build();
     }

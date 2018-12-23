@@ -35,7 +35,16 @@
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="t_article" domainObjectName="Article" enableCountByExample="false"
+       <table tableName="t_article_info" domainObjectName="ArticleInfo" enableCountByExample="false"
+              enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
+              selectByExampleQueryId="false">
+           <!--使用自增长键-->
+            <property name="my.isgen.usekeys" value="true"/>
+            <!--使用数据库中实际的字段名作为生成的实体类的属性-->
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+        <table tableName="t_article_content" domainObjectName="ArticleContent" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
                selectByExampleQueryId="false">
             <!--使用自增长键-->
@@ -44,13 +53,13 @@
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="JDBC"/>
         </table>
-        <table tableName="t_article_category" domainObjectName="ArticleCategory" enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
-               selectByExampleQueryId="false">
-            <property name="my.isgen.usekeys" value="true"/>
-            <property name="useActualColumnNames" value="false"/>
-            <generatedKey column="id" sqlStatement="JDBC"/>
-        </table>
+        <!--<table tableName="t_article_category" domainObjectName="ArticleCategory" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--<property name="my.isgen.usekeys" value="true"/>-->
+            <!--<property name="useActualColumnNames" value="false"/>-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--</table>-->
         <!--<table tableName="t_category" domainObjectName="Category" enableCountByExample="false"-->
                <!--enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true"-->
                <!--selectByExampleQueryId="false">-->
@@ -73,13 +82,13 @@
             <!--<property name="useActualColumnNames" value="false"/>-->
             <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
         <!--</table>-->
-        <table tableName="t_sys_config" domainObjectName="SysConfig" enableCountByExample="false"
-               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true"
-               selectByExampleQueryId="false">
-            <property name="my.isgen.usekeys" value="true"/>
-            <property name="useActualColumnNames" value="false"/>
-            <generatedKey column="id" sqlStatement="JDBC"/>
-        </table>
+        <!--<table tableName="t_sys_config" domainObjectName="SysConfig" enableCountByExample="false"-->
+               <!--enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--<property name="my.isgen.usekeys" value="true"/>-->
+            <!--<property name="useActualColumnNames" value="false"/>-->
+            <!--<generatedKey column="id" sqlStatement="JDBC"/>-->
+        <!--</table>-->
         <!--<table tableName="t_users" domainObjectName="User" enableCountByExample="false"-->
                <!--enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="true"-->
                <!--selectByExampleQueryId="false">-->

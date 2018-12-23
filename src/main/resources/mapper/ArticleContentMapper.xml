@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yzg.blogweb.mapper.ArticleMapper">
-  <resultMap id="BaseResultMap" type="com.yzg.blogweb.pojo.Article">
+<mapper namespace="com.yzg.blogweb.mapper.ArticleContentMapper">
+  <resultMap id="BaseResultMap" type="com.yzg.blogweb.pojo.ArticleContent">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="title" jdbcType="VARCHAR" property="title" />
-    <result column="titlePic" jdbcType="VARCHAR" property="titlepic" />
-    <result column="authorId" jdbcType="INTEGER" property="authorid" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="status" jdbcType="BIT" property="status" />
-    <result column="is_allowComment" jdbcType="BIT" property="isAllowcomment" />
+    <result column="article_id" jdbcType="BIGINT" property="articleId" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yzg.blogweb.pojo.Article">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yzg.blogweb.pojo.ArticleContent">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -45,12 +40,12 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, titlePic, authorId, type, status, is_allowComment, create_time, update_time
+    id, article_id, create_time, update_time
   </sql>
   <sql id="Blob_Column_List">
     content
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.yzg.blogweb.pojo.ArticleExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.yzg.blogweb.pojo.ArticleContentExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -59,7 +54,7 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from t_article
+    from t_article_content
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -67,14 +62,14 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.yzg.blogweb.pojo.ArticleExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.yzg.blogweb.pojo.ArticleContentExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'false' as QUERYID,
     <include refid="Base_Column_List" />
-    from t_article
+    from t_article_content
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,43 +82,24 @@
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from t_article
+    from t_article_content
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from t_article
+    delete from t_article_content
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.yzg.blogweb.pojo.Article" useGeneratedKeys="true">
-    insert into t_article (title, titlePic, authorId, 
-      type, status, is_allowComment, 
-      create_time, update_time, content
-      )
-    values (#{title,jdbcType=VARCHAR}, #{titlepic,jdbcType=VARCHAR}, #{authorid,jdbcType=INTEGER}, 
-      #{type,jdbcType=VARCHAR}, #{status,jdbcType=BIT}, #{isAllowcomment,jdbcType=BIT}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}
-      )
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.yzg.blogweb.pojo.ArticleContent" useGeneratedKeys="true">
+    insert into t_article_content (article_id, create_time, update_time, 
+      content)
+    values (#{articleId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.yzg.blogweb.pojo.Article" useGeneratedKeys="true">
-    insert into t_article
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.yzg.blogweb.pojo.ArticleContent" useGeneratedKeys="true">
+    insert into t_article_content
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="title != null">
-        title,
-      </if>
-      <if test="titlepic != null">
-        titlePic,
-      </if>
-      <if test="authorid != null">
-        authorId,
-      </if>
-      <if test="type != null">
-        type,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="isAllowcomment != null">
-        is_allowComment,
+      <if test="articleId != null">
+        article_id,
       </if>
       <if test="createTime != null">
         create_time,
@@ -136,23 +112,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="title != null">
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="titlepic != null">
-        #{titlepic,jdbcType=VARCHAR},
-      </if>
-      <if test="authorid != null">
-        #{authorid,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=BIT},
-      </if>
-      <if test="isAllowcomment != null">
-        #{isAllowcomment,jdbcType=BIT},
+      <if test="articleId != null">
+        #{articleId,jdbcType=BIGINT},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -165,26 +126,11 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yzg.blogweb.pojo.Article">
-    update t_article
+  <update id="updateByPrimaryKeySelective" parameterType="com.yzg.blogweb.pojo.ArticleContent">
+    update t_article_content
     <set>
-      <if test="title != null">
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="titlepic != null">
-        titlePic = #{titlepic,jdbcType=VARCHAR},
-      </if>
-      <if test="authorid != null">
-        authorId = #{authorid,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        type = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=BIT},
-      </if>
-      <if test="isAllowcomment != null">
-        is_allowComment = #{isAllowcomment,jdbcType=BIT},
+      <if test="articleId != null">
+        article_id = #{articleId,jdbcType=BIGINT},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -198,27 +144,17 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yzg.blogweb.pojo.Article">
-    update t_article
-    set title = #{title,jdbcType=VARCHAR},
-      titlePic = #{titlepic,jdbcType=VARCHAR},
-      authorId = #{authorid,jdbcType=INTEGER},
-      type = #{type,jdbcType=VARCHAR},
-      status = #{status,jdbcType=BIT},
-      is_allowComment = #{isAllowcomment,jdbcType=BIT},
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yzg.blogweb.pojo.ArticleContent">
+    update t_article_content
+    set article_id = #{articleId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yzg.blogweb.pojo.Article">
-    update t_article
-    set title = #{title,jdbcType=VARCHAR},
-      titlePic = #{titlepic,jdbcType=VARCHAR},
-      authorId = #{authorid,jdbcType=INTEGER},
-      type = #{type,jdbcType=VARCHAR},
-      status = #{status,jdbcType=BIT},
-      is_allowComment = #{isAllowcomment,jdbcType=BIT},
+  <update id="updateByPrimaryKey" parameterType="com.yzg.blogweb.pojo.ArticleContent">
+    update t_article_content
+    set article_id = #{articleId,jdbcType=BIGINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}

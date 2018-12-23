@@ -2,12 +2,14 @@ package com.yzg.blogweb.pojo;
 
 import java.util.Date;
 
-public class Article {
+public class ArticleInfo {
     private Long id;
 
     private String title;
 
     private String titlepic;
+
+    private Integer hits;
 
     private Integer authorid;
 
@@ -20,8 +22,6 @@ public class Article {
     private Date createTime;
 
     private Date updateTime;
-
-    private String content;
 
     public Long getId() {
         return id;
@@ -45,6 +45,14 @@ public class Article {
 
     public void setTitlepic(String titlepic) {
         this.titlepic = titlepic == null ? null : titlepic.trim();
+    }
+
+    public Integer getHits() {
+        return hits;
+    }
+
+    public void setHits(Integer hits) {
+        this.hits = hits;
     }
 
     public Integer getAuthorid() {
@@ -93,13 +101,5 @@ public class Article {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 }

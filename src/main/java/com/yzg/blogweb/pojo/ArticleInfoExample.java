@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ArticleExample {
+public class ArticleInfoExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ArticleExample() {
+    public ArticleInfoExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -302,6 +302,66 @@ public class ArticleExample {
 
         public Criteria andTitlepicNotBetween(String value1, String value2) {
             addCriterion("titlePic not between", value1, value2, "titlepic");
+            return (Criteria) this;
+        }
+
+        public Criteria andHitsIsNull() {
+            addCriterion("hits is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHitsIsNotNull() {
+            addCriterion("hits is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHitsEqualTo(Integer value) {
+            addCriterion("hits =", value, "hits");
+            return (Criteria) this;
+        }
+
+        public Criteria andHitsNotEqualTo(Integer value) {
+            addCriterion("hits <>", value, "hits");
+            return (Criteria) this;
+        }
+
+        public Criteria andHitsGreaterThan(Integer value) {
+            addCriterion("hits >", value, "hits");
+            return (Criteria) this;
+        }
+
+        public Criteria andHitsGreaterThanOrEqualTo(Integer value) {
+            addCriterion("hits >=", value, "hits");
+            return (Criteria) this;
+        }
+
+        public Criteria andHitsLessThan(Integer value) {
+            addCriterion("hits <", value, "hits");
+            return (Criteria) this;
+        }
+
+        public Criteria andHitsLessThanOrEqualTo(Integer value) {
+            addCriterion("hits <=", value, "hits");
+            return (Criteria) this;
+        }
+
+        public Criteria andHitsIn(List<Integer> values) {
+            addCriterion("hits in", values, "hits");
+            return (Criteria) this;
+        }
+
+        public Criteria andHitsNotIn(List<Integer> values) {
+            addCriterion("hits not in", values, "hits");
+            return (Criteria) this;
+        }
+
+        public Criteria andHitsBetween(Integer value1, Integer value2) {
+            addCriterion("hits between", value1, value2, "hits");
+            return (Criteria) this;
+        }
+
+        public Criteria andHitsNotBetween(Integer value1, Integer value2) {
+            addCriterion("hits not between", value1, value2, "hits");
             return (Criteria) this;
         }
 

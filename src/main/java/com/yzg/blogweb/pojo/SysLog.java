@@ -1,5 +1,7 @@
 package com.yzg.blogweb.pojo;
 
+import java.util.Date;
+
 public class SysLog {
     private Long id;
 
@@ -11,7 +13,9 @@ public class SysLog {
 
     private String ip;
 
-    private Integer created;
+    private Date createTime;
+
+    private Date updateTime;
 
     public Long getId() {
         return id;
@@ -53,11 +57,19 @@ public class SysLog {
         this.ip = ip == null ? null : ip.trim();
     }
 
-    public Integer getCreated() {
-        return created;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreated(Integer created) {
-        this.created = created;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

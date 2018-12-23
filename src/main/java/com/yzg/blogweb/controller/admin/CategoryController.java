@@ -1,6 +1,8 @@
-package com.yzg.blogweb.controller;
+package com.yzg.blogweb.controller.admin;
 
+import com.yzg.blogweb.controller.BaseController;
 import com.yzg.blogweb.pojo.Category;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +12,10 @@ import java.util.List;
 /**
  * 分类信息控制器
  */
+@Api("分类信息控制器")
 @RestController
-@RequestMapping("/api/category")
-public class CategoryController {
+@RequestMapping("/admin/category")
+public class CategoryController extends BaseController {
     /**
      * 获取所有分类信息
      *
